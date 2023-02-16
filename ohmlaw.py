@@ -1,15 +1,35 @@
-def calculate_voltage(resistance: float, amperes: float) -> float:
+import os
+
+
+def calculate_voltage(resistance, amperes):
     return resistance * amperes
 
-def calculate_resistance(volts: float, amperes: float) -> float:
+
+def calculate_resistance(volts, amperes):
     return volts / amperes
 
-def calculate_current(volts: float, resistance: float) -> float:
+
+def calculate_current(volts, resistance):
     return volts / resistance
+
+
+def format_value(value):
+    if abs(value) >= 1000:
+        if abs(value) >= 1000000:
+            value = value / 1000000
+            suffix = "M"
+        else:
+            value = value / 1000
+            suffix = "K"
+        return f"{value:.2f} {suffix}"
+    else:
+        return f"{value:.2f}"
+
 
 def main():
     while True:
-        print("Please choose an option:")
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("Choose an option:")
         print("1. Calculate Voltage")
         print("2. Calculate Resistance")
         print("3. Calculate Current")
@@ -23,11 +43,11 @@ def main():
         try:
             choice = int(choice)
         except ValueError:
-            print("Invalid choice. Please enter a valid option.\n")
+            input("Invalid choice. Please enter a valid option.\nPress Enter to continue...")
             continue
 
         if choice < 1 or choice > 3:
-            print("Invalid choice. Please enter a valid option.\n")
+            input("Invalid choice. Please enter a valid option.\nPress Enter to continue...")
             continue
 
         try:
@@ -35,19 +55,20 @@ def main():
                 resistance = float(input("Enter resistance in Ohms: "))
                 amperes = float(input("Enter current in Amperes: "))
                 result = calculate_voltage(resistance, amperes)
-                print(f"The voltage is {result:.2f} volts.\n")
+                print(f"The voltage is {format_value(result)} volts.")
             elif choice == 2:
                 volts = float(input("Enter voltage in Volts: "))
                 amperes = float(input("Enter current in Amperes: "))
                 result = calculate_resistance(volts, amperes)
-                print(f"The resistance is {result:.2f} ohms.\n")
+                print(f"The resistance is {format_value(result)} ohms.")
             elif choice == 3:
                 volts = float(input("Enter voltage in Volts: "))
                 resistance = float(input("Enter resistance in Ohms: "))
                 result = calculate_current(volts, resistance)
-                print(f"The current is {result:.2f} amperes.\n")
+                print(f"The current is {format_value(result)} amperes.")
+            input("\nPress Enter to continue...")
         except ValueError:
-            print("Invalid input. Please enter a valid number.\n")
+            input("Invalid input. Please enter a valid number.\nPress Enter to continue...")
             continue
 
 
