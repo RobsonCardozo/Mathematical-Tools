@@ -1,37 +1,37 @@
 import os
 
-def regra_de_tres(A, B, C):
+def rule_of_thirds(A, B, C):
     D = (C * B) / A
     return D
 
 while True:
     try:
-        # Obter os valores A, B e C do usuário
-        A = float(input("Digite o valor de A: "))
-        B = float(input("Digite o valor de B: "))
-        C = float(input("Digite o valor de C: "))
+        # Get A, B and C values
+        A = float(input("Enter the value of A: "))
+        B = float(input("Enter the value of B: "))
+        C = float(input("Enter the value of C: "))
 
-        # Verificar se os valores são todos diferentes de zero
+        # Verify if value is different from zero
         if A == 0 or B == 0 or C == 0:
-            print("Erro: pelo menos um dos valores informados é igual a zero. Por favor, tente novamente.")
+            print("Error: at least one of the values ​​entered is equal to zero. Please try again.")
             continue
 
-        # Calcular o valor de D utilizando a função regra_de_tres
-        D = regra_de_tres(A, B, C)
+        # Calculate the D's value using the rule_of_thirds
+        D = rule_of_thirds(A, B, C)
 
-        # Exibir o resultado para o usuário
-        print("O valor de D é:", D)
+        # Print the result
+        print("The value of D is:", D)
 
     except ValueError:
-        # Caso o usuário digite um valor inválido, exibir mensagem de erro
-        print("Erro: um ou mais valores informados não são numéricos. Por favor, tente novamente.")
+        # If user types something wrong, print this error message
+        print("Error: one or more values ​​entered are not numeric. Please try again.")
         continue
 
-    # Perguntar se o usuário deseja reiniciar o programa
-    reiniciar = input("Deseja reiniciar o programa? (s/n): ")
+    # Ask if the user wants to continue or quit the program
+    restart = input("Do you want to restart the program? (y/n):")
 
-    if reiniciar.lower() == "s":
-        # Limpar a tela antes de reiniciar o programa
+    if restart.lower() == "y" or "Y":
+        # Clear the screen to restart the program
         os.system("cls" if os.name == "nt" else "clear")
     else:
         break
